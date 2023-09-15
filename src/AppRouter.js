@@ -19,17 +19,17 @@ function AppRouter () {
       <div id="sidebar-wrapper" className="bg-light border-right">
       <div id="sidebarheading" className="sidebar-heading">Rpanion Web UI</div>
         <div id="sidebar-items" className="list-group list-group-flush">
-          <Link className='list-group-item list-group-item-action bg-light' to="/">Home</Link>
-          <Link className='list-group-item list-group-item-action bg-light' to="/flightlogs">Flight Logs</Link>
-          <Link className='list-group-item list-group-item-action bg-light' to="/controller">Flight Controller</Link>
-          <Link className='list-group-item list-group-item-action bg-light' to="/ntrip">NTRIP Config</Link>
-          <Link className='list-group-item list-group-item-action bg-light' to="/network">Network Config</Link>
-          <Link className='list-group-item list-group-item-action bg-light' to="/adhoc">Adhoc Wifi Config</Link>
-          <Link className='list-group-item list-group-item-action bg-light' to="/apclients">Access Point Clients</Link>
-          <Link className='list-group-item list-group-item-action bg-light' to="/video">Video Streaming</Link>
-          <Link className='list-group-item list-group-item-action bg-light' to="/cloud">Cloud Upload</Link>
-          <Link className='list-group-item list-group-item-action bg-light' to="/vpn">VPN Config</Link>
-          <Link className='list-group-item list-group-item-action bg-light' to="/about">About</Link>
+          <Link className='list-group-item list-group-item-action bg-light' to="/">主页</Link>
+          <Link className='list-group-item list-group-item-action bg-light' to="/flightlogs">飞行记录</Link>
+          <Link className='list-group-item list-group-item-action bg-light' to="/controller">飞控信息</Link>
+          <Link className='list-group-item list-group-item-action bg-light' to="/ntrip">NTRIP配置</Link>
+          <Link className='list-group-item list-group-item-action bg-light' to="/network">网络配置</Link>
+          <Link className='list-group-item list-group-item-action bg-light' to="/adhoc">Adhoc WiFi 配置</Link>
+          <Link className='list-group-item list-group-item-action bg-light' to="/apclients">AP 客户端管理</Link>
+          <Link className='list-group-item list-group-item-action bg-light' to="/video">视频推流</Link>
+          <Link className='list-group-item list-group-item-action bg-light' to="/cloud">云端上传</Link>
+          <Link className='list-group-item list-group-item-action bg-light' to="/vpn">VPN配置</Link>
+          <Link className='list-group-item list-group-item-action bg-light' to="/about">关于</Link>
         </div>
       </div>
 
@@ -59,7 +59,7 @@ function NoMatch ({ location }) {
   return (
     <div>
       <h3>
-        No match for <code>{location.pathname}</code>
+        匹配失败，找不到路径： <code>{location.pathname}</code>
       </h3>
     </div>
   )

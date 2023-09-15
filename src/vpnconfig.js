@@ -138,40 +138,40 @@ class VPNPage extends basePage {
   renderContent () {
     return (
         <div style={{ width: 800 }}>
-        <h2>Services</h2>
+        <h2>服务</h2>
         <div className="form-group row" style={{ marginBottom: '5px' }}>
-          <label className="col-sm-4 col-form-label">VPN Service</label>
+          <label className="col-sm-4 col-form-label">VPN服务</label>
           <div className="col-sm-8">
             <Select onChange={this.handleVPNChange} options={this.state.vpnOptions} value={this.state.selectedVPN} />
           </div>
         </div>
-        <h2>Config</h2>
-        <p>Installed: {this.state.selVPNInstalled == true ? 'Yes' : 'No'}</p>
-        <p>Active: {this.state.selVPNActive == true ? 'Yes' : 'No'}</p>
+        <h2>配置</h2>
+        <p>已安装: {this.state.selVPNInstalled == true ? '是' : '否'}</p>
+        <p>激活中: {this.state.selVPNActive == true ? '是' : '否'}</p>
         {/* <p>{JSON.stringify(this.state.selectedVPN.value == 'wireguard' ? this.state.statusWireguard : this.state.statusZerotier, null, 2)}</p> */}
         <div style={{ display: (this.state.selectedVPN.value == 'zerotier' && this.state.statusZerotier != {}) ? "block" : "none"}}>
           <Table striped bordered>
             <thead>
               <tr>
-                <th>Network ID</th>
-                <th>Network Name</th>
+                <th>网络ID</th>
+                <th>网络名称</th>
                 <th>IP</th>
-                <th>Status</th>
-                <th>Type</th>
-                <th>Action</th>
+                <th>状态</th>
+                <th>类型</th>
+                <th>操作</th>
               </tr>
             </thead>
             <tbody>
               {this.state.statusZerotier.text.map((item, index) => (
-                <tr key={item.nwid}><td>{item.nwid}</td><td>{item.name}</td><td>{item.assignedAddresses}</td><td>{item.status}</td><td>{item.type}</td><td><Button size="sm" id={item.nwid} onClick={() => this.removeZerotierNetwork(item.nwid)}>Delete</Button></td></tr>
+                <tr key={item.nwid}><td>{item.nwid}</td><td>{item.name}</td><td>{item.assignedAddresses}</td><td>{item.status}</td><td>{item.type}</td><td><Button size="sm" id={item.nwid} onClick={() => this.removeZerotierNetwork(item.nwid)}>删除</Button></td></tr>
               ))}
             </tbody>
             </Table>
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label ">Add new network by key: </label>
+              <label className="col-sm-4 col-form-label ">通过密钥添加新网络：</label>
               <div className="col-sm-4">
                 <Form.Control type="text" name="ipaddress" disabled={!this.state.selVPNActive} value={this.state.newZerotierKey} onChange={this.handlenewZerotierKey} />
-                <Button id="addzt" disabled={!this.state.selVPNActive || this.state.newZerotierKey === ''} onClick={() => this.addZerotierNetwork()}>Add</Button>
+                <Button id="addzt" disabled={!this.state.selVPNActive || this.state.newZerotierKey === ''} onClick={() => this.addZerotierNetwork()} className="mt-2">添加</Button>
               </div>
             </div>
           </div>
@@ -179,11 +179,11 @@ class VPNPage extends basePage {
             <Table striped bordered>
               <thead>
                 <tr>
-                  <th>Network Conf File</th>
-                  <th>Local IP</th>
-                  <th>Server IP</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th>网络配置文件</th>
+                  <th>本地IP</th>
+                  <th>服务器IP</th>
+                  <th>状态</th>
+                  <th>操作</th>
                 </tr>
               </thead>
               <tbody>
@@ -195,19 +195,19 @@ class VPNPage extends basePage {
                   <td>{item.status}</td>
                   <td>
                     <div style={{ display: (item.status === 'disabled') ? "block" : "none"}}>
-                      <Button size="sm" id={item.file} onClick={() => this.activateWireguardNetwork(item.profile)}>Activate</Button>
+                      <Button size="sm" id={item.file} onClick={() => this.activateWireguardNetwork(item.profile)}>激活</Button>
                     </div>
                     <div style={{ display: (item.status !== 'disabled') ? "block" : "none"}}>
-                      <Button size="sm" id={item.file} onClick={() => this.deactivateWireguardNetwork(item.profile)}>Deactivate</Button>
+                      <Button size="sm" id={item.file} onClick={() => this.deactivateWireguardNetwork(item.profile)}>停用</Button>
                     </div>
-                    <Button size="sm" id={item.file} disabled={item.status !== 'disabled'} onClick={() => this.deleteWireguardNetwork(item.profile)}>Delete</Button>
+                    <Button size="sm" id={item.file} disabled={item.status !== 'disabled'} onClick={() => this.deleteWireguardNetwork(item.profile)}>删除</Button>
                   </td>
                 </tr>
               ))}
             </tbody>
             </Table>
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label ">Add new Wireguard profile</label>
+              <label className="col-sm-4 col-form-label ">添加新的Wireguard配置文件</label>
               <div className="col-sm-6">
                 <Form ref='uploadForm' 
                   id='uploadForm' 
@@ -215,7 +215,7 @@ class VPNPage extends basePage {
                   method='post' 
                   encType="multipart/form-data">
                     <Form.Control type="file" name="wgprofile" disabled={!this.state.selVPNActive} onChange={this.fileChangeHandler} accept=".conf, .config"/>
-                    <Button type='submit' value='Upload' disabled={this.state.selectedWGFile === ''}>Upload</Button>
+                    <Button type='submit' value='Upload' disabled={this.state.selectedWGFile === ''} className="mt-2">上传</Button>
                 </Form>
               </div>
             </div>

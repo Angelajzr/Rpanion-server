@@ -124,62 +124,62 @@ class VideoPage extends basePage {
   }
 
   renderTitle() {
-    return "Video Streaming";
+    return "视频推流";
   }
 
   renderContent() {
     return (
       <Form style={{ width: 600 }}>
-        <p><i>Stream live video from any connected camera devices. Only 1 camera can be streamed at a time.</i></p>
-        <h2>Configuration</h2>
+        <p><i>从任意连接的摄像头设备实时传输视频。每次只能传输1台摄像机。</i></p>
+        <h2>配置</h2>
         <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label">Streaming Mode</label>
+              <label className="col-sm-4 col-form-label">推流模式</label>
               <div className="col-sm-8">
                 <div className="form-check">
                   <input className="form-check-input" type="radio" name="streamtype" value="rtp" disabled={this.state.streamingStatus} onChange={this.handleUseUDPChange} checked={this.state.UDPChecked} />
-                  <label className="form-check-label">RTP (stream to single client)</label>
+                  <label className="form-check-label">RTP (向单个客户端传输)</label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" name="streamtype" value="rtsp" disabled={this.state.streamingStatus} onChange={this.handleUseUDPChange} checked={!this.state.UDPChecked} />
-                  <label className="form-check-label">RTSP (multiple clients can connect to stream)</label>
+                  <label className="form-check-label">RTSP (可以连接多个客户端)</label>
                 </div>
               </div>
             </div>
 
         <div className="form-group row" style={{ marginBottom: '5px' }}>
-          <label className="col-sm-4 col-form-label">Device</label>
+          <label className="col-sm-4 col-form-label">设备</label>
           <div className="col-sm-8">
             <Select isDisabled={this.state.streamingStatus} onChange={this.handleVideoChange} options={this.state.dev} value={this.state.vidDeviceSelected} />
           </div>
         </div>
         <div className="form-group row" style={{ marginBottom: '5px' }}>
-          <label className="col-sm-4 col-form-label">Resolution</label>
+          <label className="col-sm-4 col-form-label">分辨率</label>
           <div className="col-sm-8">
             <Select isDisabled={this.state.streamingStatus} options={this.state.vidres} onChange={this.handleResChange} value={this.state.vidResSelected} />
           </div>
         </div>
         <div style={{ display: (typeof this.state.vidResSelected !== 'undefined' && this.state.vidResSelected.format !== "video/x-h264") ? "block" : "none" }}>
           <div className="form-group row" style={{ marginBottom: '5px' }}>
-            <label className="col-sm-4 col-form-label">Rotation</label>
+            <label className="col-sm-4 col-form-label">旋转</label>
             <div className="col-sm-8">
               <Select isDisabled={this.state.streamingStatus} options={this.state.rotations} onChange={this.handleRotChange} value={this.state.rotSelected} />
             </div>
           </div>
           <div className="form-group row" style={{ marginBottom: '5px' }}>
-            <label className="col-sm-4 col-form-label">Maximum Bitrate</label>
+            <label className="col-sm-4 col-form-label">最大比特率</label>
             <div className="col-sm-8">
               <input disabled={this.state.streamingStatus} type="number" name="bitrate" min="50" max="10000" step="10" onChange={this.handleBitrateChange} value={this.state.bitrate} />kbps
             </div>
           </div>
           <div className="form-group row" style={{ marginBottom: '5px' }}>
-          <label className="col-sm-4 col-form-label">Timestamp Overlay</label>
+          <label className="col-sm-4 col-form-label">时间戳叠加</label>
           <div className="col-sm-8">
             <input type="checkbox" disabled={this.state.streamingStatus} onChange={this.handleTimestampChange} checked={this.state.timestamp} />
           </div>
           </div>
         </div>
         <div className="form-group row" style={{ marginBottom: '5px' }}>
-          <label className="col-sm-4 col-form-label">Framerate</label>
+          <label className="col-sm-4 col-form-label">帧率</label>
           <div className="col-sm-8" style={{ display: (this.state.FPSMax === 0) ? "block" : "none" }}>
             <Select isDisabled={this.state.streamingStatus} options={this.state.fps} value={this.state.fpsSelected} onChange={this.handleFPSChangeSelect} />
           </div>
@@ -189,13 +189,13 @@ class VideoPage extends basePage {
         </div>
         <div style={{ display: (this.state.UDPChecked) ? "block" : "none" }}>
           <div className="form-group row" style={{ marginBottom: '5px' }}>
-            <label className="col-sm-4 col-form-label ">Destination IP</label>
+            <label className="col-sm-4 col-form-label ">目标 IP</label>
             <div className="col-sm-8">
               <input type="text" name="ipaddress" disabled={!this.state.UDPChecked || this.state.streamingStatus} value={this.state.useUDPIP} onChange={this.handleUDPIPChange} />
             </div>
           </div>
           <div className="form-group row" style={{ marginBottom: '5px' }}>
-            <label className="col-sm-4 col-form-label">Destination Port</label>
+            <label className="col-sm-4 col-form-label">目标端口</label>
             <div className="col-sm-8">
               <input type="text" name="port" disabled={!this.state.UDPChecked || this.state.streamingStatus} value={this.state.useUDPPort} onChange={this.handleUDPPortChange} />
             </div>
@@ -204,16 +204,16 @@ class VideoPage extends basePage {
 
         <div className="form-group row" style={{ marginBottom: '5px' }}>
           <div className="col-sm-8">
-            <Button onClick={this.handleStreaming} className="btn btn-primary">{this.state.streamingStatus ? "Stop Streaming" : "Start Streaming"}</Button>
+            <Button onClick={this.handleStreaming} className="btn btn-primary">{this.state.streamingStatus ? "停止串流" : "开始串流"}</Button>
           </div>
         </div>
 
         <br />
-        <h3 style={{ display: (this.state.streamingStatus) ? "block" : "none" }}>Connection strings for video stream</h3>
+        <h3 style={{ display: (this.state.streamingStatus) ? "block" : "none" }}>串流地址</h3>
         <Accordion defaultActiveKey="0" style={{ display: (this.state.streamingStatus && !this.state.UDPChecked) ? "block" : "none" }}>
           <Accordion.Item eventKey="0">
             <Accordion.Header>
-              + RTSP Streaming Addresses (for VLC, etc)
+              + RTSP 串流地址 (for VLC, etc)
             </Accordion.Header>
             <Accordion.Body>
               {this.state.streamAddresses.map((item, index) => (
@@ -223,7 +223,7 @@ class VideoPage extends basePage {
           </Accordion.Item>
           <Accordion.Item eventKey="1">
             <Accordion.Header>
-              + GStreamer Connection Strings
+              + GStreamer 
             </Accordion.Header>
             <Accordion.Body>
               {this.state.streamAddresses.map((item, index) => (
@@ -233,7 +233,7 @@ class VideoPage extends basePage {
           </Accordion.Item>
           <Accordion.Item eventKey="2">
             <Accordion.Header>
-              + Mission Planner Connection Strings
+              + Mission Planner 
             </Accordion.Header>
             <Accordion.Body>
               {this.state.streamAddresses.map((item, index) => (
@@ -262,7 +262,7 @@ class VideoPage extends basePage {
           </Accordion.Item>
           <Accordion.Item eventKey="2">
             <Accordion.Header>
-              + Mission Planner Connection Strings
+              + Mission Planner
             </Accordion.Header>
             <Accordion.Body>
               <p style={{ fontFamily: "monospace" }}>udpsrc port={this.state.useUDPPort} buffer-size=90000 ! application/x-rtp ! rtpjitterbuffer ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! video/x-raw,format=BGRA ! appsink name=outsink sync=false</p>

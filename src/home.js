@@ -17,14 +17,14 @@ class Home extends basePage {
   }
 
   renderTitle () {
-    return 'Home Page'
+    return '主页'
   }
 
   renderContent () {
     return (
       <div>
-        <p>Welcome to the Rpanion-server home page</p>
-        <p>Use the links on the left to configure the system</p>
+        <p>欢迎来到 Rpanion-server 主页</p>
+        <p>使用左边的链接来配置系统</p>
         <p><a href='https://github.com/stephendade/Rpanion-server'>Rpanion-server website</a></p>
         <p><a href='https://www.docs.rpanion.com/software/rpanion-server'>Rpanion-server documentation</a></p>
       </div>

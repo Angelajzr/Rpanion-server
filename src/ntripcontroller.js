@@ -72,56 +72,56 @@ class NTRIPPage extends basePage {
   }
 
   renderTitle() {
-    return "NTRIP Configuration";
+    return "NTRIP 配置";
   }
 
   renderContent() {
     return (
       <div>
-        <p><i>Stream NTRIP (GPS correction) data from a web service to the flight controller</i></p>
-        <p>TLS NTRIP connections (usually port 443) are not supported at this time</p>
-        <h2>Configuration</h2>
+        <p><i>从Web服务流式传输NTRIP(GPS校正)数据到飞行控制器</i></p>
+        <p>目前不支持TLS NTRIP连接(通常为端口443)</p>
+        <h2>配置</h2>
         <Form style={{ width: 500 }}>
           <div className="form-group row" style={{ marginBottom: '5px' }}>
-            <label className="col-sm-2 col-form-label">Host</label>
+            <label className="col-sm-2 col-form-label">主机</label>
             <div className="col-sm-10">
               <input type="text" className="form-control" name="host" disabled={this.state.active === true} onChange={this.changeHandler} value={this.state.host} />
             </div>
           </div>
           <div className="form-group row" style={{ marginBottom: '5px' }}>
-            <label className="col-sm-2 col-form-label">Port</label>
+            <label className="col-sm-2 col-form-label">端口</label>
             <div className="col-sm-10">
               <input type="number" min="100" max="60000" step="1" className="form-control" name="port" disabled={this.state.active === true} onChange={this.changeHandler} value={this.state.port} />
             </div>
           </div>
           <div className="form-group row" style={{ marginBottom: '5px' }}>
-            <label className="col-sm-2 col-form-label">Mountpoint</label>
+            <label className="col-sm-2 col-form-label">挂载点</label>
             <div className="col-sm-10">
               <input type="text" className="form-control" name="mountpoint" disabled={this.state.active === true} onChange={this.changeHandler} value={this.state.mountpoint} />
             </div>
           </div>
 
           <div className="form-group row" style={{ marginBottom: '5px' }}>
-            <label className="col-sm-2 col-form-label">Username</label>
+            <label className="col-sm-2 col-form-label">用户名</label>
             <div className="col-sm-10">
               <input type="text" className="form-control" name="username" disabled={this.state.active === true} onChange={this.changeHandler} value={this.state.username} />
             </div>
           </div>
           <div className="form-group row" style={{ marginBottom: '5px' }}>
-            <label className="col-sm-2 col-form-label">Password</label>
+            <label className="col-sm-2 col-form-label">密码</label>
             <div className="col-sm-10">
               <input type={this.state.showPW === true ? "text" : "password"} className="form-control" name="password" disabled={this.state.active === true} onChange={this.changeHandler} value={this.state.password} />
-              <input name="showpassword" type="checkbox" checked={this.state.showPW} onChange={this.togglePasswordVisible} /><label>Show Password</label>
+              <input name="showpassword" type="checkbox" checked={this.state.showPW} onChange={this.togglePasswordVisible} /><label>显示密码</label>
             </div>
           </div>
 
           <div className="form-group row" style={{ marginBottom: '5px' }}>
             <div className="col-sm-10">
-              <Button onClick={this.handleNTRIPSubmit} className="btn btn-primary">{this.state.active === true ? "Disable" : "Enable"}</Button>
+              <Button onClick={this.handleNTRIPSubmit} className="btn btn-primary">{this.state.active === true ? "禁用" : "启用"}</Button>
             </div>
           </div>
         </Form>
-        <h2>Status</h2>
+        <h2>状态</h2>
         <p>{this.state.NTRIPStatus}</p>
       </div>
     );

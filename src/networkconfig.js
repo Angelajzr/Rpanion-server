@@ -448,7 +448,7 @@ class NetworkConfig extends basePage {
   }
 
   renderTitle() {
-    return "Network Configuration";
+    return "网络配置";
   }
 
   handleCloseModalAP() {
@@ -606,17 +606,17 @@ class NetworkConfig extends basePage {
   renderContent() {
     return (
       <div style={{ width: 500 }}>
-        <p><i>Create, view, edit and delete network connections</i></p>
-        <h2>Select Connection</h2>
-        <p><i>Show a specific network connection, filtered by network adapter</i></p>
+        <p><i>创建、查看、编辑和删除网络连接</i></p>
+        <h2>选择连接</h2>
+        <p><i>显示特定的网络连接，通过网络适配器筛选</i></p>
         <div className="form-group row" style={{ marginBottom: '5px' }}>
-          <label className="col-sm-4 col-form-label">Adapter</label>
+          <label className="col-sm-4 col-form-label">适配器</label>
           <div className="col-sm-8">
             <Select onChange={this.handleAdapterChange} options={this.state.netDevice} value={this.state.netDeviceSelected} />
           </div>
         </div>
         <div className="form-group row" style={{ marginBottom: '5px' }}>
-          <label className="col-sm-4 col-form-label">Connection</label>
+          <label className="col-sm-4 col-form-label">连接</label>
           <div className="col-sm-8">
             <Select onChange={this.handleConnectionChange} options={this.state.netConnectionFiltered} value={this.state.netConnectionFilteredSelected} />
           </div>
@@ -624,37 +624,37 @@ class NetworkConfig extends basePage {
         <div className="form-group row" style={{ marginBottom: '5px' }}>
           <label className="col-sm-4 col-form-label"></label>
           <div className="col-sm-8">
-            <input type="checkbox" checked={this.state.wirelessEnabled} onChange={this.togglewirelessEnabled} />Wifi interfaces enabled
+            <input type="checkbox" checked={this.state.wirelessEnabled} onChange={this.togglewirelessEnabled} />WIFI启动
           </div>
         </div>
         <div className="form-group row" style={{ marginBottom: '5px' }}>
           <label className="col-sm-4 col-form-label"></label>
           <div className="col-sm-8">
-            <Button size="sm" variant="primary" onClick={this.deleteConnection} disabled={this.state.netConnectionFilteredSelected == null || this.state.netConnectionFilteredSelected.type === "tun"} className="deleteConnection">Delete</Button>{' '}
-            <Button size="sm" variant="primary" onClick={this.addConnection} disabled={this.state.netConnectionFilteredSelected !== null && this.state.netConnectionFilteredSelected.type === "tun"} className="addConnection">Add new</Button>{' '}
-            <Button size="sm" variant="secondary" onClick={this.activateConnection} disabled={this.state.netConnectionFilteredSelected == null || this.state.netConnectionFilteredSelected.state !== ""} className="activateConnection">Activate</Button>{' '}
-            <Button size="sm" variant="secondary" onClick={this.deactivateConnection} disabled={this.state.netConnectionFilteredSelected !== null && this.state.netConnectionFilteredSelected.state === ""} className="deactivateConnection">Deactivate</Button>{' '}
+            <Button size="sm" variant="primary" onClick={this.deleteConnection} disabled={this.state.netConnectionFilteredSelected == null || this.state.netConnectionFilteredSelected.type === "tun"} className="deleteConnection">删除</Button>{' '}
+            <Button size="sm" variant="primary" onClick={this.addConnection} disabled={this.state.netConnectionFilteredSelected !== null && this.state.netConnectionFilteredSelected.type === "tun"} className="addConnection">添加新连接</Button>{' '}
+            <Button size="sm" variant="secondary" onClick={this.activateConnection} disabled={this.state.netConnectionFilteredSelected == null || this.state.netConnectionFilteredSelected.state !== ""} className="activateConnection">启用</Button>{' '}
+            <Button size="sm" variant="secondary" onClick={this.deactivateConnection} disabled={this.state.netConnectionFilteredSelected !== null && this.state.netConnectionFilteredSelected.state === ""} className="deactivateConnection">禁用</Button>{' '}
           </div>
         </div>
         <div className="form-group row" style={{ marginBottom: '5px' }}>
           <label className="col-sm-4 col-form-label"></label>
           <div className="col-sm-7">
-            <Button size="sm" disabled={this.state.netConnectionFilteredSelected !== null && this.state.netConnectionFilteredSelected.type === "tun"} onClick={this.refreshConList}>Refresh Connection List</Button>{' '}
+            <Button size="sm" disabled={this.state.netConnectionFilteredSelected !== null && this.state.netConnectionFilteredSelected.type === "tun"} onClick={this.refreshConList}>刷新连接列表</Button>{' '}
           </div>
         </div>
         <div className="form-group row" style={{ marginBottom: '5px' }}>
           <label className="col-sm-4 col-form-label"></label>
           <div className="col-sm-7">
-            <Button size="sm" disabled={this.state.netConnectionFilteredSelected == null || this.state.netConnectionFilteredSelected.type === "tun"} onClick={this.refreshInfoList}>Refresh Connection Information</Button>
+            <Button size="sm" disabled={this.state.netConnectionFilteredSelected == null || this.state.netConnectionFilteredSelected.type === "tun"} onClick={this.refreshInfoList}>刷新连接信息</Button>
           </div>
         </div>
 
         <br />
-        <h2>Edit Connection</h2>
+        <h2>编辑连接</h2>
         <Form onSubmit={this.handleNetworkSubmit} style={{ display: (this.state.netConnectionFilteredSelected !== null) ? "block" : "none" }}>
           <div className="adapterattach" style={{ display: this.state.netConnectionFilteredSelected && this.state.netConnectionFilteredSelected.type === "tun" ? "none" : "block" }}>
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label">Attach to Specific Adapter</label>
+              <label className="col-sm-4 col-form-label">连接到特定适配器</label>
               <div className="col-sm-8">
                 <select name="attachedIface" onChange={this.changeHandler} value={this.state.curSettings.attachedIface.value}>
                   {this.state.netConnectionSimilarIfaces.map((option, index) => (
@@ -665,10 +665,10 @@ class NetworkConfig extends basePage {
             </div>
           </div>
 
-          <div className="ipconfig" style={{ display: (this.state.showIP && this.state.curSettings.mode.value !== "adhoc" && this.state.curSettings.mode.value !== "ap") ? "block" : "none" }}><h3>IP Address</h3>
+          <div className="ipconfig" style={{ display: (this.state.showIP && this.state.curSettings.mode.value !== "adhoc" && this.state.curSettings.mode.value !== "ap") ? "block" : "none" }}><h3>IP 地址</h3>
 
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label">IP Address Type</label>
+              <label className="col-sm-4 col-form-label">IP 地址类型</label>
               <div className="col-sm-8">
                 <div className="form-check">
                   <input className="form-check-input" type="radio" name="ipaddresstype" value="auto" onChange={this.changeHandler} checked={this.state.curSettings.ipaddresstype.value === "auto"} />
@@ -676,19 +676,19 @@ class NetworkConfig extends basePage {
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" name="ipaddresstype" value="manual" onChange={this.changeHandler} checked={this.state.curSettings.ipaddresstype.value === "manual"} />
-                  <label className="form-check-label">Static IP</label>
+                  <label className="form-check-label">静态IP</label>
                 </div>
               </div>
             </div>
             <div style={{ display: (this.state.curSettings.ipaddresstype.value !== "auto") ? "block" : "none" }}>
               <div className="form-group row" style={{ marginBottom: '5px' }}>
-                <label className="col-sm-4 col-form-label">IP Address</label>
+                <label className="col-sm-4 col-form-label">IP地址</label>
                 <div className="col-sm-8">
                   <input type="text" name="ipaddress" disabled={this.state.curSettings.ipaddresstype.value === "auto"} onChange={this.changeHandler} value={this.state.curSettings.ipaddress.value} />
                 </div>
               </div>
               <div className="form-group row" style={{ marginBottom: '5px' }}>
-                <label className="col-sm-4 col-form-label">Subnet Mask</label>
+                <label className="col-sm-4 col-form-label">子网掩码</label>
                 <div className="col-sm-8">
                   <input type="text" name="subnet" disabled={this.state.curSettings.ipaddresstype.value === "auto"} onChange={this.changeHandler} value={this.state.curSettings.subnet.value} />
                 </div>
@@ -696,15 +696,15 @@ class NetworkConfig extends basePage {
               </div>
 
           </div>
-          <div className="wificlientconfig" style={{ display: this.state.curSettings.mode.value === "infrastructure" ? "block" : "none" }}><h3>Wifi Client</h3>
+          <div className="wificlientconfig" style={{ display: this.state.curSettings.mode.value === "infrastructure" ? "block" : "none" }}><h3>Wifi客户端</h3>
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label">SSID Name</label>
+              <label className="col-sm-4 col-form-label">SSID名称</label>
               <div className="col-sm-8">
                 <input name="ssid" onChange={this.changeHandler} value={this.state.curSettings.ssid.value} type="text" />
               </div>
             </div>
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label">Security</label>
+              <label className="col-sm-4 col-form-label">安全性</label>
               <div className="col-sm-8">
                 <select name="wpaType" value={this.state.curSettings.wpaType.value} onChange={this.changeHandler}>
                   {this.state.wpaTypes.map((option, index) => (
@@ -715,7 +715,7 @@ class NetworkConfig extends basePage {
             </div>
             <div style={{ display: (this.state.curSettings.wpaType.value !== "wpa-none") ? "block" : "none" }}>
               <div className="form-group row" style={{ marginBottom: '5px' }}>
-                <label className="col-sm-4 col-form-label">Password</label>
+                <label className="col-sm-4 col-form-label">密码</label>
                 <div className="col-sm-8">
                   <input name="password" type={this.state.showPW === true ? "text" : "password"} disabled={this.state.curSettings.wpaType.value === "wpa-none"} value={this.state.curSettings.wpaType.value === "wpa-none" ? '' : this.state.curSettings.password.value} onChange={this.changeHandler} /><br />
                   <input name="showpassword" type="checkbox" checked={this.state.showPW} disabled={this.state.curSettings.wpaType.value === "wpa-none"} onChange={this.togglePasswordVisible} /><label>Show Password</label>
@@ -725,16 +725,16 @@ class NetworkConfig extends basePage {
 
           </div>
 
-          <div className="wifiapconfig" style={{ display: (this.state.curSettings.mode.value === "ap" || this.state.curSettings.mode.value === "adhoc") ? "block" : "none" }}><h3>Wifi Access Point</h3>
+          <div className="wifiapconfig" style={{ display: (this.state.curSettings.mode.value === "ap" || this.state.curSettings.mode.value === "adhoc") ? "block" : "none" }}><h3>Wifi热点设置</h3>
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label">SSID Name</label>
+              <label className="col-sm-4 col-form-label">SSID名称</label>
               <div className="col-sm-8">
                 <input name="ssid" onChange={this.changeHandler} value={this.state.curSettings.ssid.value} type="text" />
               </div>
             </div>
 
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label">Band</label>
+              <label className="col-sm-4 col-form-label">频段</label>
               <div className="col-sm-8">
                 <select name="band" onChange={this.changeHandler} value={this.state.curSettings.band.value}>
                   {this.state.bandTypes.map((option, index) => (
@@ -744,7 +744,7 @@ class NetworkConfig extends basePage {
               </div>
             </div>
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label">Channel</label>
+              <label className="col-sm-4 col-form-label">信道</label>
               <div className="col-sm-8">
                 <select name="channel" onChange={this.changeHandler} value={this.state.curSettings.channel.value}>
                   {this.state.netDeviceSelected !== null ? this.getValidChannels().map((option, index) => (
@@ -755,7 +755,7 @@ class NetworkConfig extends basePage {
             </div>
 
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label">Security</label>
+              <label className="col-sm-4 col-form-label">安全性(选WAP)</label>
               <div className="col-sm-8">
                 <select name="wpaType" value={this.state.curSettings.wpaType.value} onChange={this.changeHandler}>
                   {this.state.wpaTypes.map((option, index) => (
@@ -766,7 +766,7 @@ class NetworkConfig extends basePage {
             </div>
 
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label">Password</label>
+              <label className="col-sm-4 col-form-label">密码(大于8位)</label>
               <div className="col-sm-8">
                 <input name="password" type={this.state.showPW === true ? "text" : "password"} disabled={this.state.curSettings.wpaType.value === "wpa-none"} value={this.state.curSettings.wpaType.value === "wpa-none" ? '' : this.state.curSettings.password.value} onChange={this.changeHandler} /><br />
                 <input name="showpassword" type="checkbox" checked={this.state.showPW} disabled={this.state.curSettings.wpaType.value === "wpa-none"} onChange={this.togglePasswordVisible} /><label>Show Password</label>
@@ -774,7 +774,7 @@ class NetworkConfig extends basePage {
             </div>
 
             <div className="form-group row" style={{ marginBottom: '5px' }}>
-              <label className="col-sm-4 col-form-label">Starting IP Address</label>
+              <label className="col-sm-4 col-form-label">起始IP地址</label>
               <div className="col-sm-8">
                 <input name="ipaddress" onChange={this.changeHandler} value={this.state.curSettings.ipaddress.value} type="text" />
               </div>
@@ -785,8 +785,8 @@ class NetworkConfig extends basePage {
           <div className="form-group row" style={{ marginBottom: '5px' }}>
             <label className="col-sm-4 col-form-label"></label>
             <div className="col-sm-8">
-              <Button size="sm" variant="primary" type="submit" disabled={this.state.netConnectionFilteredSelected !== null && this.state.netConnectionFilteredSelected.type === "tun"}>Save Changes</Button>{' '}
-              <Button size="sm" variant="secondary" onClick={this.resetForm}>Discard Changes</Button>{' '}
+              <Button size="sm" variant="primary" type="submit" disabled={this.state.netConnectionFilteredSelected !== null && this.state.netConnectionFilteredSelected.type === "tun"}>保存更改</Button>{' '}
+              <Button size="sm" variant="secondary" onClick={this.resetForm}>放弃更改</Button>{' '}
             </div>
           </div>
 
@@ -796,14 +796,14 @@ class NetworkConfig extends basePage {
             </Modal.Header>
 
             <Modal.Body>
-              <p>Please select an existing Wifi network from the below list, or create a hotspot.</p>
+              <p>请选择下面列表中的现有Wifi网络,或创建一个热点。</p>
               <div style={{ maxHeight: '400px', overflow: 'scroll' }}>
                 <Table striped bordered hover>
                   <thead>
                     <tr>
                       <th>SSID</th>
-                      <th>Signal Strength</th>
-                      <th>Security</th>
+                      <th>信号强度</th>
+                      <th>安全性</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -816,25 +816,25 @@ class NetworkConfig extends basePage {
             </Modal.Body>
 
             <Modal.Footer>
-              <Button variant="primary" onClick={this.handleCloseModalAP}>Create new Wifi hotspot</Button>
-              <Button variant="primary" onClick={() => this.handleCloseModalClient('', '')}>Connect to hidden WiFi</Button>
-              <Button bsSize="small" onClick={this.refreshWifi}>Refresh Wifi list</Button>
-              <Button variant="secondary" onClick={this.handleNewNetworkTypeCancel}>Cancel</Button>
+              <Button variant="primary" onClick={this.handleCloseModalAP}>创建新的Wifi热点</Button>
+              <Button variant="primary" onClick={() => this.handleCloseModalClient('', '')}>连接到隐藏的WiFi</Button>
+              <Button bsSize="small" onClick={this.refreshWifi}>刷新Wifi列表</Button>
+              <Button variant="secondary" onClick={this.handleNewNetworkTypeCancel}>取消</Button>
             </Modal.Footer>
           </Modal>
 
           <Modal show={this.state.showModalDelete} onHide={this.handleCloseModalDelete}>
             <Modal.Header closeButton>
-              <Modal.Title>Confirm Delete</Modal.Title>
+              <Modal.Title>确认删除</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-              <p>Are you sure you want to Delete the '{this.state.netConnectionFilteredSelected === null ? "" : this.state.netConnectionFilteredSelected.label}' network?</p>
+              <p>您确定要删除'{this.state.netConnectionFilteredSelected === null ? "" : this.state.netConnectionFilteredSelected.label}'网络吗？</p>
             </Modal.Body>
 
             <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleDelete}>Yes</Button>
-              <Button variant="primary" onClick={this.handleCloseModalDelete}>No</Button>
+              <Button variant="secondary" onClick={this.handleDelete}>是</Button>
+              <Button variant="primary" onClick={this.handleCloseModalDelete}>否</Button>
             </Modal.Footer>
           </Modal>
 
@@ -844,13 +844,13 @@ class NetworkConfig extends basePage {
             </Modal.Header>
 
             <Modal.Body>
-              <p>Enter the name of the new network:</p>
+              <p>输入新网络的名称:</p>
               <input name="newNetworkName" onChange={this.changeNetworkNameHandler} value={this.state.newNetworkName} type="text" />
             </Modal.Body>
 
             <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleCloseModalNewNetworkName}>OK</Button>
-              <Button variant="primary" onClick={this.handleNewNetworkNameCancel}>Cancel</Button>
+              <Button variant="secondary" onClick={this.handleCloseModalNewNetworkName}>确定</Button>
+              <Button variant="primary" onClick={this.handleNewNetworkNameCancel}>取消</Button>
             </Modal.Footer>
           </Modal>
         </Form>

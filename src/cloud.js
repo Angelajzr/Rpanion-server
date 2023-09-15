@@ -66,26 +66,26 @@ class CloudConfig extends basePage {
   }
 
   renderTitle () {
-    return 'Cloud Upload'
+    return '云端上传'
   }
 
   renderContent () {
     return (
             <div>
-              <p><i>Automatically upload binlogs from the "Flight Logs" page to a remote (network) destination over an ssh connection</i></p>
-                <h3>Bin Logs Upload</h3>
-                <p>All bin logs (in Flight Logs -> Bin Logs) will be synchonised to the following remote destination using rsync.</p>
-                <p>The synchonisation runs every 20 seconds.</p>
-                <p>Destination format is <code>username@server:/path/to/remote/dir</code>, where <code>username</code> has an ssh publickey on the remote server.</p>
+              <p><i>自动将“飞行日志”页面中的binlog上传到远程(网络)目标通过ssh连接</i></p>
+                <h3>Bin日志上传</h3>
+                <p>所有Bin日志(在Flight Logs-Bin Logs中)将使用rsync同步到以下远程目标。</p>
+                <p>同步每20秒运行一次。</p>
+                <p>目的地格式为<code>username@server:/path/to/remote/dir</code>, where <code>username</code>在远程服务器上有一个ssh公钥。</p>
                 <Form style={{ width: 700 }}>
                     <div className="form-group row" style={{ marginBottom: '5px' }}>
-                        <label className="col-sm-3 col-form-label">Rsync Destination</label>
+                        <label className="col-sm-3 col-form-label">Rsync目的地</label>
                         <div className="col-sm-7">
                             <input type="text" className="form-control" name="binUploadLink" disabled={this.state.doBinUpload === true ? true : false} onChange={this.changeHandler} value={this.state.binUploadLink}/>
                         </div>
                     </div>
                     <div className="form-group row" style={{ marginBottom: '5px' }}>
-                        <label className="col-sm-3 col-form-label">Sync file deletions</label>
+                        <label className="col-sm-3 col-form-label">同步文件删除</label>
                         <div className="col-sm-7">
                         <input name="syncDeletions" type="checkbox" disabled={this.state.doBinUpload === true ? true : false} checked={this.state.syncDeletions} onChange={this.toggleSyncDelete}/>
                         </div>
@@ -93,14 +93,14 @@ class CloudConfig extends basePage {
                     
                     <div className="form-group row" style={{ marginBottom: '5px' }}>
                         <div className="col-sm-10">
-                        <Button onClick={this.handleDoBinUploadSubmit} className="btn btn-primary">{this.state.doBinUpload === true ? 'Disable' : 'Enable'}</Button>
+                        <Button onClick={this.handleDoBinUploadSubmit} className="btn btn-primary">{this.state.doBinUpload === true ? '禁用' : '启用'}</Button>
                         </div>
                     </div>
-                    <p>Status: {this.state.binLogStatus}</p>
+                    <p>状态: {this.state.binLogStatus}</p>
                 </Form>
-                <h3>Publickeys</h3>
-                <p><i>All publickeys on this device</i></p>
-                <p>One of the below keys must be added to <code>~/.ssh/authorized_keys</code> on the remote server</p>
+                <h3>公钥</h3>
+                <p><i>此设备上的所有公钥</i></p>
+                <p>必须将以下公钥之一添加到远程服务器的<code>~/.ssh/authorized_keys</code>中</p>
                   <div style={{ fontFamily: "monospace", width: 700, wordWrap: 'break-word' }}>
                   <hr/>
                     {this.state.pubkey.map(item => {

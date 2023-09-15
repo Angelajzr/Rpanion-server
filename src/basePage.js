@@ -63,13 +63,13 @@ class basePage extends Component {
         <div style={{ display: (loading) ? "block" : "none" }}>
           <Spinner animation="border" role="status" >
           </Spinner>
-          <p><span className="sr-only" size={35}>Loading...</span></p>
+          <p><span className="sr-only" size={35}>正在加载...</span></p>
         </div>
 
         <div className='sweet-waiting' style={{ display: (waiting) ? "block" : "none", "textAlign": "center", "position": "fixed", "width": "100%", "height": "100%", "top": "0", "left": "0", "right": "0", "bottom": "0", "zIndex": "9", "backgroundColor": "rgba(65,117,5,0.5)" }}>
           <Spinner style={{ "position": "absolute", "top": "45%", "left": "50%" }} animation="border" role="status">
           </Spinner>
-          <h2 style={{ "position": "absolute", "top": "65%", "left": "40%", "msTransform": "translateY(-50%)", "transform": "translateY(-50%)" }}>Submitting Changes</h2>
+          <h2 style={{ "position": "absolute", "top": "65%", "left": "40%", "msTransform": "translateY(-50%)", "transform": "translateY(-50%)" }}>正在提交更改</h2>
         </div>
 
         <div className='pagedetails' style={{ display: (loading) ? "none" : "block" }}>
@@ -77,7 +77,7 @@ class basePage extends Component {
         </div>
         <Modal show={error !== null} onHide={this.handleCloseError}>
           <Modal.Header closeButton>
-            <Modal.Title>Error</Modal.Title>
+            <Modal.Title>错误</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -85,13 +85,13 @@ class basePage extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="primary" onClick={this.handleCloseError}>OK</Button>
+            <Button variant="primary" onClick={this.handleCloseError}>确定</Button>
           </Modal.Footer>
         </Modal>
 
         <Modal show={infoMessage !== null} onHide={this.handleCloseInformation}>
           <Modal.Header closeButton>
-            <Modal.Title>Information</Modal.Title>
+            <Modal.Title>信息</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -99,7 +99,7 @@ class basePage extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="primary" onClick={this.handleCloseInformation}>OK</Button>
+            <Button variant="primary" onClick={this.handleCloseInformation}>确定</Button>
           </Modal.Footer>
         </Modal>
         <div>

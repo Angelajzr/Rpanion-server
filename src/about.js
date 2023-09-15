@@ -81,12 +81,12 @@ class AboutPage extends basePage {
   }
 
   renderTitle () {
-    return 'About'
+    return '关于'
   }
 
   HATInfo() {
       if (this.state.HATName.product !== "") {
-        return <p>Attached HAT: {this.state.HATName.product}, Vendor: {this.state.HATName.vendor}, Version: {this.state.HATName.version}</p>;
+        return <p>已连接的HAT: {this.state.HATName.product}, 制造商: {this.state.HATName.vendor}, 版本: {this.state.HATName.version}</p>;
       }
       return <p></p>;
     }
@@ -94,28 +94,28 @@ class AboutPage extends basePage {
   renderContent () {
     return (
       <div>
-        <h2>About Hardware</h2>
-        <p>CPU: {this.state.CPUName}</p>
-        <p>RAM: {this.state.RAMName} GB</p>
-        <p>Disk Space: {this.state.diskSpaceStatus}</p>
+        <h2>硬件信息</h2>
+        <p>处理器: {this.state.CPUName}</p>
+        <p>内存: {this.state.RAMName} GB</p>
+        <p>磁盘空间: {this.state.diskSpaceStatus}</p>
         {this.HATInfo()}
-        <h2>About Software</h2>
-        <p>OS hostname: {this.state.hostname}</p>
-        <p>OS version: {this.state.OSVersion}</p>
-        <p>Node.js version: {this.state.Nodejsversion}</p>
-        <p>Rpanion-server version: {this.state.rpanionversion}</p>
-        <p><a href='./rplogs/app.log' download>Download Rpanion-server logfile</a></p>
+        <h2>软件信息</h2>
+        <p>操作系统主机名: {this.state.hostname}</p>
+        <p>操作系统版本: {this.state.OSVersion}</p>
+        <p>Node.js 版本: {this.state.Nodejsversion}</p>
+        <p>Rpanion-server 版本: {this.state.rpanionversion}</p>
+        <p><a href='./rplogs/app.log' download>下载 Rpanion-server 日志文件</a></p>
         <h2>Controls</h2>
-        <p><Button size="sm" onClick={this.handleUpdateMaster}>Upgrade to lastest Github master</Button></p>
-        <p><Button size="sm" onClick={this.confirmShutdown}>Shutdown Companion Computer</Button></p>
+        <p><Button size="sm" onClick={this.handleUpdateMaster}>升级到最新的Github主分支</Button></p>
+        <p><Button size="sm" onClick={this.confirmShutdown}>关闭计算机</Button></p>
 
         <div style={{ display: (this.state.UpgradeIntStat === 'InProgress' || this.state.UpgradeIntStat === 'Complete') ? "block" : "none" }}>
-          <h2>Upgrade Status</h2>
+          <h2>升级状态</h2>
           <div style={{ display: (this.state.UpgradeIntStat === 'InProgress') ? "block" : "none" }}>
-            <p>Upgrade is in progress ... please wait</p>
+            <p>正在进行升级 ... 请稍候</p>
           </div>
           <div style={{ display: (this.state.UpgradeIntStat === 'Complete') ? "block" : "none" }}>
-            <p>Upgrade complete</p>
+            <p>升级完成</p>
           </div>
           <textarea ref={this.upgradeTextContainer} readOnly rows="20" cols="60" value={this.state.UpgradeStatus}></textarea>
         </div>
@@ -123,11 +123,11 @@ class AboutPage extends basePage {
 
         <Modal show={this.state.showModal} onHide={this.handleCloseModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Confirm</Modal.Title>
+            <Modal.Title>确认</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
-            <p>Are you sure you want to shutdown the Companion Computer?</p>
+            <p>确定要关闭计算机吗？</p>
           </Modal.Body>
 
           <Modal.Footer>

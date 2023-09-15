@@ -23,7 +23,7 @@ class NetworkClientsPage extends basePage {
   }
 
   renderTitle () {
-    return 'Access Point Clients'
+    return 'AP 客户端管理'
   }
 
   // create a html table from a list of udpoutputs
@@ -45,10 +45,10 @@ class NetworkClientsPage extends basePage {
     return (
       <div>
         <div style={{ display: (this.state.apname !== '') ? 'block' : 'none' }}>
-          <p>The following table show all DHCP clients connected to the access point: {this.state.apname}</p>
+          <p>以下表格显示连接到接入点的所有DHCP客户端: {this.state.apname}</p>
           <Table id='apclients' striped bordered hover size="sm">
             <thead>
-              <tr><th>Name</th><th>IP</th></tr>
+              <tr><th>名称</th><th>IP</th></tr>
               {this.renderClientTableData(this.state.apclients)}
             </thead>
             <tbody>
@@ -56,7 +56,7 @@ class NetworkClientsPage extends basePage {
           </Table>
         </div>
         <div style={{ display: (this.state.apname === '') ? 'block' : 'none' }}>
-          <p>No Access Point running from this Companion Computer</p>
+          <p>此计算机上没有运行无线热点</p>
         </div>
       </div>
     )

@@ -32,8 +32,7 @@ class AdhocConfig extends basePage {
         ssid: '',
         band: 'bg',
         channel: 0,
-        isActive: false,
-        gateway: ''
+        isActive: false
       }
     };
 
@@ -65,12 +64,6 @@ class AdhocConfig extends basePage {
   IPHandler = event => {
     let items = this.state.curSettings;
     items.ipaddress = event.target.value;
-    this.setState({ curSettings: items });
-  }
-
-  GatewayHandler = event => {
-    let items = this.state.curSettings;
-    items.gateway = event.target.value;
     this.setState({ curSettings: items });
   }
 
@@ -142,7 +135,7 @@ class AdhocConfig extends basePage {
 
 
   renderTitle() {
-    return 'Adhoc Wifi Config'
+    return 'Adhoc Wifi 配置'
   }
 
   renderContent() {
@@ -151,9 +144,9 @@ class AdhocConfig extends basePage {
         <div style={{ display: (this.state.netDeviceSelected !== null) ? "block" : "none" }}>
           <Form style={{ width: 600 }}>
             <div className="form-group row" style={{ marginBottom: '0px' }}>
-              <label className="col-sm-2 col-form-label">Adapter</label>
+              <label className="col-sm-2 col-form-label">适配器</label>
               <div className="col-sm-10">
-                <Select isDisabled={this.state.curSettings.isActive} onChange={this.handleAdapterChange} options={this.state.netDevice} value={this.state.netDeviceSelected} />
+                <Select disabled={this.state.curSettings.isActive} onChange={this.handleAdapterChange} options={this.state.netDevice} value={this.state.netDeviceSelected} />
               </div>
             </div>
             <div className="form-group row" style={{ marginBottom: '0px' }}>
@@ -163,7 +156,7 @@ class AdhocConfig extends basePage {
               </div>
             </div>
             <div className="form-group row" style={{ marginBottom: '0px' }}>
-              <label className="col-sm-2 col-form-label">Band</label>
+              <label className="col-sm-2 col-form-label">频段</label>
               <div className="col-sm-10">
                 <select disabled={this.state.curSettings.isActive} name="band" onChange={this.bandhandler} value={this.state.curSettings.band}>
                   {this.state.bandTypes.map((option, index) => (
@@ -173,7 +166,7 @@ class AdhocConfig extends basePage {
               </div>
             </div>
             <div className="form-group row" style={{ marginBottom: '0px' }}>
-              <label className="col-sm-2 col-form-label">Channel</label>
+              <label className="col-sm-2 col-form-label">信道</label>
               <div className="col-sm-10">
                 <select disabled={this.state.curSettings.isActive} name="channel" onChange={this.channelhandler} value={this.state.curSettings.channel}>
                   {this.state.netDeviceSelected !== null ? this.getValidChannels().map((option, index) => (
@@ -183,7 +176,7 @@ class AdhocConfig extends basePage {
               </div>
             </div>
             <div className="form-group row" style={{ marginBottom: '0px' }}>
-              <label className="col-sm-2 col-form-label">Security</label>
+              <label className="col-sm-2 col-form-label">安全性</label>
               <div className="col-sm-10">
                 <select disabled={this.state.curSettings.isActive} name="wpaType" value={this.state.curSettings.wpaType} onChange={this.securityhandler}>
                   {this.state.wpaTypes.map((option, index) => (
@@ -193,35 +186,28 @@ class AdhocConfig extends basePage {
               </div>
             </div>
             <div className="form-group row" style={{ marginBottom: '0px' }}>
-              <label className="col-sm-2 col-form-label">Password</label>
+              <label className="col-sm-2 col-form-label">密码</label>
               <div className="col-sm-10">
-                <input disabled={this.state.curSettings.isActive || this.state.curSettings.wpaType === "none"} name="password" type={this.state.showPW === true ? "text" : "password"} value={this.state.curSettings.wpaType === "none" ? '' : this.state.curSettings.password} onChange={this.passwordhandler} />
-                <label><input disabled={this.state.curSettings.wpaType === "none"} name="showpassword" type="checkbox" checked={this.state.showPW} onChange={this.togglePasswordVisible} />Show Password</label>
+                <input disabled={this.state.curSettings.isActive || this.state.wpaType === "none"} name="password" type={this.state.showPW === true ? "text" : "password"} value={this.state.curSettings.wpaType === "none" ? '' : this.state.curSettings.password} onChange={this.passwordhandler} />
+                <label><input name="showpassword" type="checkbox" checked={this.state.showPW} disabled={this.state.curSettings.wpaType === "wpa-none"} onChange={this.togglePasswordVisible} />显示密码</label>
               </div>
             </div>
             <div className="form-group row" style={{ marginBottom: '0px' }}>
-              <label className="col-sm-2 col-form-label">IP Address</label>
+              <label className="col-sm-2 col-form-label">IP地址</label>
               <div className="col-sm-10">
                 {/* <IPut className="ipaddress" disabled={this.state.curSettings.isActive} onChange={this.IPHandler} defaultValue={this.state.curSettings.ipaddress} value={this.state.curSettings.ipaddress} /> */}
                 <input name="ipaddress" disabled={this.state.curSettings.isActive} onChange={this.IPHandler} value={this.state.curSettings.ipaddress} type="text" />
               </div>
             </div>
-            <div className="form-group row" style={{ marginBottom: '0px' }}>
-              <label className="col-sm-5 col-form-label">Gateway IP Address (Optional)</label>
-              <div className="col-sm-7">
-                {/* <IPut className="ipaddress" disabled={this.state.curSettings.isActive} onChange={this.IPHandler} defaultValue={this.state.curSettings.ipaddress} value={this.state.curSettings.ipaddress} /> */}
-                <input name="ipaddress" disabled={this.state.curSettings.isActive} onChange={this.GatewayHandler} value={this.state.curSettings.gateway} type="text" />
-              </div>
-            </div>
             <div className="form-group row" style={{ marginBottom: '5px' }}>
               <div className="col-sm-10">
-                <Button onClick={this.handleadhocSubmit} disabled={this.state.netDeviceSelected === null} className="btn btn-primary">{this.state.curSettings.isActive ? "Disable" : "Enable"}</Button>
+                <Button onClick={this.handleadhocSubmit} disabled={this.state.netDeviceSelected === null} className="btn btn-primary">{this.state.curSettings.isActive ? "禁用" : "启用"}</Button>
               </div>
             </div>
           </Form>
         </div>
         <div style={{ display: (this.state.netDeviceSelected === null) ? "block" : "none" }}>
-          <p>No wireless adapters detected</p>
+          <p>未检测到无线适配器</p>
         </div>
       </div>
     );
