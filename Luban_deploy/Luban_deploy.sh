@@ -10,14 +10,12 @@ echo "export PATH=$PATH:$HOME/.local/bin" >> ~/.bashrc
 
 sudo apt install -y wireless-tools ca-certificates curl gnupg cmake 
 sudo apt -y install python3-pil python3-numpy python3-pip git wget
+sudo systemctl stop dnsmasq
 sudo systemctl disable dnsmasq
 
 #Nodejs install
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-sudo apt-get update
-sudo apt-get install nodejs -y
+curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
 
 ## Configure nmcli to not need sudo
 sudo sed -i.bak -e '/^\[main\]/aauth-polkit=false' /etc/NetworkManager/NetworkManager.conf
