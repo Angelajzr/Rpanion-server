@@ -9,6 +9,7 @@ echo "export PATH=$PATH:$HOME/.local/bin" >> ~/.bashrc
 ./install_Luban_libraries.sh
 
 sudo apt install -y wireless-tools ca-certificates curl gnupg cmake 
+sudo apt -y install python3-pil python3-numpy python3-pip git wget
 sudo systemctl disable dnsmasq
 
 #Nodejs install
@@ -26,6 +27,9 @@ sudo touch /etc/NetworkManager/conf.d/10-globally-managed-devices.conf
 echo "[keyfile]" | sudo tee -a /etc/NetworkManager/conf.d/10-globally-managed-devices.conf >/dev/null
 echo "unmanaged-devices=*,except:type:wifi,except:type:gsm,except:type:cdma,except:type:wwan,except:type:ethernet,type:vlan" | sudo tee -a /etc/NetworkManager/conf.d/10-globally-managed-devices.conf >/dev/null
 sudo service network-manager restart
+
+#OpenCV
+sudo apt-get install python3-opencv
 
 ## mavlink-router
 ./build_mavlinkrouter.sh
