@@ -27,7 +27,7 @@ echo "unmanaged-devices=*,except:type:wifi,except:type:gsm,except:type:cdma,exce
 sudo service network-manager restart
 
 #OpenCV
-sudo apt-get install python3-opencv
+#sudo apt-get install python3-opencv
 
 ## mavlink-router
 ./build_mavlinkrouter.sh
