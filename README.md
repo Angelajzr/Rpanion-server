@@ -45,6 +45,12 @@ If not, use:
 cd ~/ && git clone --recursive https://github.com/stephendade/Rpanion-server.git
 ```
 
+### Automatic (鲁班猫0W)
+
+```
+cd ./Luban_deploy && ./install_Luban_libraries.sh && ./Luban_deploy.sh
+```
+
 ### Automatic (Raspberry Pi)
 
 For the Raspberry Pi 2, 3, 4 and Zero(2) run the below command on a fresh Raspberry Pi OS install
