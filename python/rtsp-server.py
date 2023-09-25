@@ -71,8 +71,8 @@ def getPipeline(device, height, width, bitrate, format, rotation, framerate, tim
                 bitrate*1000, devrotation, ts)
         else:
             # Pi or similar arm platforms
-            s_h264 = "videoconvert ! {1} ! {2}v4l2h264enc extra-controls=\"controls,repeat_sequence_header=1,h264_profile=2,video_bitrate={0},h264_i_frame_period=5\" ! video/x-h264,profile=main,level=(string)4 ! h264parse".format(
-                bitrate*1000, devrotation, ts)
+            s_h264 = "videoconvert  ! video/x-raw,format=I420 ! {1} ! {2}x264enc tune=zerolatency bitrate={0} speed-preset=superfast".format(
+                bitrate, devrotation, ts)
     else:
         # s/w encoder - x86, etc
         s_h264 = "videoconvert  ! video/x-raw,format=I420 ! {1} ! {2}x264enc tune=zerolatency bitrate={0} speed-preset=superfast".format(
