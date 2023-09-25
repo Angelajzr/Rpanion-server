@@ -62,6 +62,13 @@ for device in devices:
 
         path = "/dev/video0"
         name = "CSI Port Camera"
+
+    elif "rkisp_mainpath" in name:
+        caps.append({'value': "3264x2448", 'label': "3264x2448", 'height': 2448, 'width': 3264, 'format': 'video/x-raw', 'fpsmax': '15'})
+        caps.append({'value': "1640x922", 'label': "1640x922", 'height': 922, 'width': 1640, 'format': 'video/x-raw', 'fpsmax': '15'})
+        caps.append({'value': "1280x720", 'label': "1280x720", 'height': 720, 'width': 1280, 'format': 'video/x-raw', 'fpsmax': '15'})
+        caps.append({'value': "640x480", 'label': "640x480", 'height': 480, 'width': 640, 'format': 'video/x-raw', 'fpsmax': '15'})
+
     # If legacy camera stack on RasPiOS
     elif "mmal service" in name:
         caps.append({'value': "1920x1080", 'label': "1920x1080", 'height': 1080, 'width': 1920, 'format': 'video/x-raw', 'fpsmax': '30'})
