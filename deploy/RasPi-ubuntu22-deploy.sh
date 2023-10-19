@@ -39,7 +39,7 @@ sudo apt install -y wireless-tools
 sudo systemctl disable dnsmasq
 
 curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt install -y nodejs
+sudo apt install -y nodejs npm
 
 ## Configure nmcli to not need sudo
 sudo sed -i.bak -e '/^\[main\]/aauth-polkit=false' /etc/NetworkManager/NetworkManager.conf
