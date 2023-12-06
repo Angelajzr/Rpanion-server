@@ -1,11 +1,5 @@
 <div align="left">
-
-![GitHub Actions](https://github.com/stephendade/Rpanion-server/actions/workflows/node.js.yml/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/stephendade/Rpanion-server/badge.svg)](https://coveralls.io/github/stephendade/Rpanion-server)
-
-</div>
-
-User Documentation is at https://www.docs.rpanion.com/software/rpanion-server
+用户文档位于 https://www.docs.rpanion.com/software/rpanion-server
 
 <p float="left">
 <img src="https://raw.githubusercontent.com/stephendade/Rpanion-server/master/images/controller.png" width="200">
@@ -15,31 +9,31 @@ User Documentation is at https://www.docs.rpanion.com/software/rpanion-server
 
 # Rpanion-server
 
-This is a node.js based server for companion computers used in Mavlink-based vehicles (ie Ardupilot, PX4).
 
-It presents a web-based interface (running on the companion computer), where system settings such as network,
-telemetry and video streaming can be configured from.
+这是一个基于node.js的服务器，用于Mavlink-based载具中的机载电脑（例如Ardupilot、PX4）。
 
-On the Raspberry Pi, Rpanion-server is compatible with the Raspberry Pi OS and Ubuntu 20.04 LTS.
+它提供了一个基于web的界面（运行在机载电脑上），可以从中配置系统设置，如网络、遥测和视频流。
 
-On the Nvidia Jetson, Rpanion-server is compatible with Ubuntu 18.04 LTS.
+在树莓派上，Rpanion-server与Raspberry Pi OS和Ubuntu 20.04 LTS兼容。
 
-On the [Libre Computer Le Potato](https://libre.computer/products/aml-s905x-cc/), Rpanion-server is compatible with their flavor of [Raspberry Pi OS](https://distro.libre.computer/ci/raspbian/).
+在鲁班猫上，Rpanion-server与Ubuntu 22.04 LTS兼容。
+
+在Nvidia Jetson上，Rpanion-server与Ubuntu 18.04 LTS兼容。
+
+在[Libre Computer Le Potato](https://libre.computer/products/aml-s905x-cc/)上，Rpanion-server与他们的[Raspberry Pi OS](https://distro.libre.computer/ci/raspbian/)兼容。
 
 ## Features
 
-Rpanion-server allows the user to configure:
-
-- Flight Controller telemetry routing to udp outputs
-- Video Streaming via an RTSP server
-- Network configuration
-- NTRIP Streaming
-- Logging (tlog and bin logs)
+- Rpanion-server允许用户配置：
+  - 飞行控制器遥测路由到UDP输出
+  - 通过RTSP服务器进行视频流传输
+  - 网络配置
+  - NTRIP流
+  - 日志记录（tlog和bin日志）
 
 ## Dependencies and First-time configuration
 
-The following instructions assumes you have cloned the Rpanion-server repository to ``~/``.
-If not, use:
+以下说明假设您已将Rpanion-server存储库克隆到`~/`。如果没有，请使用：
 
 ```
 cd ~/ && git clone --recursive https://github.com/stephendade/Rpanion-server.git
@@ -47,57 +41,58 @@ cd ~/ && git clone --recursive https://github.com/stephendade/Rpanion-server.git
 
 ### Automatic (鲁班猫0W)
 
+对于鲁班猫0W，请在全新的操作系统安装上运行以下命令以配置和安装Rpanion-server及其所有必需的依赖项。请注意，这不会配置初始的WiFi热点。
+
 ```
 cd ./Luban_deploy && ./install_Luban_libraries.sh && ./Luban_deploy.sh
 ```
 
 ### Automatic (Raspberry Pi)
 
-For the Raspberry Pi 2, 3, 4 and Zero(2) run the below command on a fresh Raspberry Pi OS install
-to configure and install Rpanion-server with all required dependencies. Note this does not configure
-an initial Wifi hotspot.
+对于树莓派2、3、4和Zero(2)，在全新的Raspberry Pi OS安装上运行以下命令以配置和安装带有所有必需依赖项的Rpanion-server。请注意，这不会配置初始的WiFi热点。
 
 ```
 cd ./deploy && ./RasPi2-3-4-deploy.sh
 ```
 
-If running Ubuntu 20.04 OS on the Pi, use:
+如果在树莓派上运行Ubuntu 20.04操作系统，请使用：
 
 ```
 cd ~/Rpanion-server/deploy/ && ./RasPi-ubuntu20-deploy.sh
 ```
 
-If running Ubuntu 22.04 OS on the Pi, use:
+如果在树莓派上运行Ubuntu 22.04操作系统，请使用：
 
 ```
 cd ~/Rpanion-server/deploy/ && ./RasPi-ubuntu22-deploy.sh
 ```
 
-Note the CSI camera does not currently work on Ubuntu 22.04, due to incompatibilities with the Raspberry Pi.
+请注意，由于与树莓派不兼容，CSI摄像头目前在Ubuntu 22.04上无法使用。
 
-For the Raspberry Pi Zero W(1), run the below command on a fresh Raspberry Pi OS install
-to configure and install Rpanion-server. Note this does configure an initial Wifi hotspot.
+对于树莓派Zero W(1)，在全新的Raspberry Pi OS安装上运行以下命令以配置和安装Rpanion-server。请注意，这会配置初始的WiFi热点。
 
 ```
 cd ./deploy && ./RasPiZero-deploy.sh
 ```
 
-If not already configured for an initial Wifi hotspot, run the ``./deploy/wifi_access_point.sh`` script.
-The hotspot has the SSID "rpanion" and password "rpanion123". The Pi's IP address will be 10.0.2.100,
-so the Rpanion-sever website will be available at http://10.0.2.100:3000.
+如果尚未为初始WiFi热点进行配置，请运行`./deploy/wifi_access_point.sh`脚本。
+
+热点的SSID为"rpanion"，密码为"rpanion123"。
+
+树莓派的IP地址将是10.0.2.100，因此Rpanion-sever网站将在[http://10.0.2.100:3000 ](http://10.0.2.100:3000/)上可用。
 
 ### Manual (Raspberry Pi OS)
 
-Rpanion-server requires a recent version of node.js. It can be installed
-via package manager:
+Rpanion-server需要安装一个较新版本的node.js。可以通过包管理器进行安装：
 
 ```
 curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-Note that the Raspberry Pi Zero (1) requires an unofficial build of nodejs, as Rpanion-server requires
-nodejs version 12 or greater, and official support for the Pi Zero ended with nodejs version 11;
+请注意，树莓派Zero (1)需要一个非官方构建的nodejs版本，
+
+因为Rpanion-server需要nodejs版本12或更高，并且官方支持的Pi Zero版本截至nodejs版本11。
 
 ```
 wget https://unofficial-builds.nodejs.org/download/release/v16.19.1/node-v16.19.1-linux-armv6l.tar.xz
@@ -107,7 +102,7 @@ sudo ln -s /usr/local/lib/nodejs/node-v16.19.1-linux-armv6l/bin/node /usr/local/
 sudo ln -s /usr/local/lib/nodejs/node-v16.19.1-linux-armv6l/bin/npm /usr/local/bin
 ```
 
-The required prerequisite packages can be installed via:
+可以通过以下方式安装所需的先决条件包：
 
 ```
 sudo apt install libgstreamer-plugins-base1.0* libgstreamer1.0-dev gstreamer1.0-plugins-ugly libgstrtspserver-1.0-dev gstreamer1.0-plugins-base-apps network-manager python3 python3-dev python3-gst-1.0 python3-pip dnsmasq ninja-build
@@ -116,21 +111,22 @@ sudo pip3 install meson
 pip3 install netifaces --user
 ```
 
-For some systems (such as the Raspberry Pi), additional permissions may be requires to run ``nmcli`` from the
-default user. In ``/etc/NetworkManager/NetworkManager.conf`` add ``auth-polkit=false`` in the ``main`` section.
+对于某些系统（如树莓派），可能需要从默认用户运行`nmcli`时附加额外的权限。
 
-If an older version of the Raspberry Pi OS is used (Buster, V10 or below), the ``gst-rpicamsrc`` Gstreamer element
-must be installed. See https://github.com/thaytan/gst-rpicamsrc for install instructions.
+在`/etc/NetworkManager/NetworkManager.conf`中在`main`部分中添加`auth-polkit=false`。
 
-To (optionally) use the Zerotier and/or Wireguard VPN's, install as follows:
+如果使用较旧版本的树莓派操作系统（Buster，V10或更低版本），必须安装`gst-rpicamsrc` 。
+
+请参阅 https://github.com/thaytan/gst-rpicamsrc 获取安装说明。
+
+要（可选地）使用Zerotier和/或Wireguard VPN，按照以下方式安装：
 
 ```
 curl -s https://install.zerotier.com | sudo bash
 sudo apt install wireguard wireguard-tools
 ```
 
-The mavlink-router (https://github.com/intel/mavlink-router) software is used for
-backend routing and is required to be installed:
+用于后端转发的mavlink-router (https://github.com/intel/mavlink-router) 软件需要被安装：
 
 ```
 git submodule init && git submodule update
@@ -140,13 +136,11 @@ ninja -C build
 sudo ninja -C build install
 ```
 
-The node.js packages need to be installed using ``npm install`` in the Rpanion-server folder.
+在Rpanion-server文件夹中需要使用`npm install`安装node.js包。
 
 ### Automatic (Nvidia Jetson)
 
-For the Nvidia Jetson run the below command on a fresh OS install
-to configure and install Rpanion-server and all required dependencies. Note this does not
-configure an initial Wifi hotspot.
+对于Nvidia Jetson，请在全新的操作系统安装上运行以下命令以配置和安装Rpanion-server及其所有必需的依赖项。请注意，这不会配置初始的WiFi热点。
 
 ```
 cd ./deploy && ./jetson-deploy.sh
@@ -154,32 +148,27 @@ cd ./deploy && ./jetson-deploy.sh
 
 ### Automatic (Libre Computer AML-S905X-CC aka 'Le Potato')
 
-For the Le Potato run the below command on a fresh OS install
-to configure and install Rpanion-server and all required dependencies. Note this does not
-configure an initial Wifi hotspot.
+对于Le Potato，请在全新的操作系统安装上运行以下命令以配置和安装Rpanion-server及其所有必需的依赖项。请注意，这不会配置初始的WiFi热点。
 
 ```
 cd ./deploy && ./RasPi2-3-4-deploy.sh
 ```
 
-If using a usb to serial converter, you might need to modify permissions of the device.
+如果使用USB转串口转换器，您可能需要修改设备的权限。
 
-**Temporary device permission update**
+**临时设备权限更新**
 
 ```
 sudo chmod 666 /dev/ttyACM0
 ```
 
-**Persistent device permission update**
+**持久设备权限更新**
 
-Follow the steps on this site for your specific device:
-https://www.xmodulo.com/change-usb-device-permission-linux.html
+请按照此网站上针对您特定设备的步骤进行操作： https://www.xmodulo.com/change-usb-device-permission-linux.html
 
 ### Automatic (x86 boards and laptops)
 
-For any x86 based modules or laptops, run the following script
-to configure and install Rpanion-server and all required dependencies. Note this does not
-configure an initial Wifi hotspot.
+对于任何基于x86的模块或笔记本电脑，请运行以下脚本配置并安装Rpanion-server及其所有必需的依赖项。请注意，这不会配置初始的WiFi热点。
 
 ```
 cd ./deploy && ./x86-ubuntu20-deploy.sh
@@ -187,15 +176,14 @@ cd ./deploy && ./x86-ubuntu20-deploy.sh
 
 ### Updating
 
-When updating Rpanion-server from Github, run ``npm install`` to grab any
-changed dependencies.
 
-If running in production mode, run ``npm run build`` too for the ReactJS app 
-to be rebuilt.
+从Github更新Rpanion-server时，请运行`npm install`以获取任何更改的依赖项。
 
-If running Rpanion-server as a service, ensure to restart the service.
+如果以生产模式运行，请运行`npm run build`重新构建ReactJS应用程序。
 
-An automatic update script performed via:
+如果将Rpanion-server作为服务运行，请确保重新启动服务。
+
+可以通过以下方式执行自动更新脚本：
 
 ```
 ./deploy/upgrade.sh
@@ -203,8 +191,7 @@ An automatic update script performed via:
 
 ## Building and Running in production mode
 
-Running in production mode builds the reactJS app first. This gives
-performance increases over running in development mode.
+在生产模式下运行时，首先构建ReactJS应用程序。这可以提供比在开发模式下运行更好的性能增益。
 
 ```bash
 npm run build
@@ -214,49 +201,48 @@ npm run server
 
 ## Building and Running in development mode
 
-Running in development mode allows for any code changes to trigger a restart of Rpanion-server. 
 
-Rpanion-server consists of a node.js server running on port 3001 and a React frontend application
-running on port 3000 in development mode. 
+在开发模式下运行允许任何代码更改触发Rpanion-server的重新启动。
 
-In production mode, the React application is rendered statically
-from the node.js server on port 3001. This can be overidden via setting the ``PORT`` environment
-variable (see ``rpanion.service`` for for example).
+Rpanion-server包括一个运行在端口3001上的node.js服务器和一个运行在开发模式下端口3000上的React前端应用程序。
 
-You can start the server on its own with the command:
+在生产模式下，React应用程序会从运行在端口3001上的node.js服务器上静态渲染。可以通过设置`PORT`环境变量来覆盖这个设置（参见`rpanion.service`作为示例）。
+
+你可以单独启动服务器，使用以下命令：
 
 ```bash
 npm run server
 ```
 
-Run the React application on its own with the command:
+单独运行React应用程序，使用以下命令：
 
 ```bash
 npm start
 ```
 
-Run both applications together with the command:
+同时运行两个应用程序，使用以下命令：
 
 ```bash
 npm run dev
 ```
 
-At this point, the website will be active at ``http://<ip of device>:3000``
+此时，网站将在`http://<设备IP>:3000`上激活。
 
 ## Tests
 
-Unit tests are split into separate commands for the frontend (ReactJS) and backend.
 
-Unit tests can be run with the command:
+单元测试被分成前端（ReactJS）和后端的两个独立部分。
+
+可以使用以下命令运行单元测试：
 
 ```bash
 npm run testback
 npm run testfront
 ```
 
-Code coverage statistics are automatically calculated for the backend tests.
+后端测试会自动计算代码覆盖率统计信息。
 
-Linting (via eslint) is available via:
+通过以下命令可以进行Linting（使用eslint）：
 
 ```bash
 npm run lint
@@ -264,17 +250,18 @@ npm run lint
 
 ## Releasing
 
-Use ``npx npm-check-updates -u`` to update nodejs libraries.
 
-Use ``npm version minor`` to create a new release.
+使用`npx npm-check-updates -u`命令来更新Node.js库。
 
-To produce a disk image from a SD card, insert the card and run ``./deploy/create_image.sh``.
+使用`npm version minor`命令创建一个新的发布版本。
+
+要从SD卡制作磁盘镜像，请插入卡并运行`./deploy/create_image.sh`
 
 ## Running as a Service
 
-To have Rpanion-server running on automatically on boot, there is an included systemd service file.
+为了让Rpanion-server在启动时自动运行，系统中包含了一个 systemd 服务文件。
 
-This can be enabled via:
+可以通过以下方式启用它：
 
 ```
 sudo cp rpanion.service /etc/systemd/system
