@@ -14,4 +14,4 @@ else
 fi
 
 sudo ninja -C build install
-cd ../../deploy
+#cd ../../deploy

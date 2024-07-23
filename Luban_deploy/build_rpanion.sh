@@ -20,7 +20,7 @@ NPM_INSTALL_EXIT_CODE=0
 # Loop through the retries
 for i in $(seq 1 $MAX_RETRIES); do
   echo "Running npm install (attempt $i)..."
-  npm install
+  sudo npm install  #sometimes we need add 'sudo' to make sure we have authority to modify the folder
   NPM_INSTALL_EXIT_CODE=$?
 
   # If npm install was successful, break out of the loop
